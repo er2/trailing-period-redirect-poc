@@ -21,9 +21,7 @@ MediaWiki's `wfUrlencode()` function (and its JavaScript counterpart
 `mw.internalWikiUrlencode()`) should percent-encode a trailing period as
 `%2E`, producing:
 
-```
 https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc%2E
-```
 
 Markdown linkifiers see no trailing period to strip, so the link survives.
 
