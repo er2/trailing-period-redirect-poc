@@ -67,6 +67,15 @@ The same applies to `!`, `,`, and `)`. The trailing period is the odd one out:
 `wfUrlencode()` has no reason to touch it either — making it the only common
 title-ending punctuation that reaches the browser unencoded.
 
+Parentheses deserve a special mention. While a `)` inside an explicitly written
+markdown link like `[text](url_(with_parens))` can appear to break the syntax,
+CommonMark-compliant parsers handle this elegantly: they count balanced
+parentheses inside link destinations, so the `(with_parens)` pair is treated as
+part of the URL and the final `)` correctly closes the markdown syntax. The
+issue only affects older or non-compliant parsers. The trailing period has no
+such saving grace — a bare `.` reads as sentence-ending punctuation to every
+linkifier regardless of spec compliance.
+
 ## Requirements
 
 - PHP 8.0+
