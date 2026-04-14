@@ -13,10 +13,7 @@ When that URL is shared as plain text in a markdown-aware platform (Phabricator,
 GitHub, Lemmy, etc.), the linkifier treats the trailing period as
 sentence-ending punctuation and strips it, producing a broken link:
 
-```
-See https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.
-                                                       ^--- stripped, link breaks
-```
+https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.
 
 ## The proposed fix
 
