@@ -11,6 +11,14 @@ if ( preg_match( '#^/wiki/(.+)$#', $path, $m ) ) {
 	$endsWithDot     = str_ends_with( $rawTitle, '.' );
 	$endsWithEncoded = str_ends_with( strtoupper( $rawTitle ), '%2E' );
 
+	// Canonical always uses %2E for a trailing period.
+	$scheme        = isset( $_SERVER['HTTPS'] ) ? 'https' : 'http';
+	$host          = $_SERVER['HTTP_HOST'];
+	$canonicalTitle = $endsWithDot
+		? substr( $rawTitle, 0, -1 ) . '%2E'
+		: $rawTitle;
+	$canonicalUrl  = $scheme . '://' . $host . '/wiki/' . $canonicalTitle;
+
 	if ( $endsWithEncoded ) {
 		$verdict      = '%2E reached the server intact';
 		$verdictColor = '#2d6a2d';
@@ -35,6 +43,7 @@ if ( preg_match( '#^/wiki/(.+)$#', $path, $m ) ) {
 	<head>
 	  <meta charset="utf-8">
 	  <title>Article: {$decodedTitle}</title>
+	  <link rel="canonical" href="{$canonicalUrl}">
 	  <style>
 	    body  { font-family: sans-serif; max-width: 720px; margin: 3rem auto; line-height: 1.5; }
 	    .box  { padding: .75rem 1rem; border-radius: 4px; color: #fff;
