@@ -82,8 +82,8 @@ linkifier regardless of spec compliance.
 
 ## Running
 
-```sh
-./start.sh
+```shell
+php -S localhost:8765 index.php
 ```
 
 Then open <http://localhost:8765> in your browser.
